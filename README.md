@@ -111,3 +111,12 @@ Ejecutar tests:
 ## Repositorio
 
 https://github.com/WilyPardo3000/CRUD-EMPLEADOS
+
+CAPTURAS:
+![INCIO](image.png)
+![Agregar empleado](image-1.png)
+![Mostrar empleados](image-2.png)
+![Editar empleado](image-3.png)
+![Eliminar empleado](image-4.png)
+![Buscar por nombre](image-5.png)
+![Buscar por departamento](image-6.png)
