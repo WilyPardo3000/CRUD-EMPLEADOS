@@ -1,146 +1,113 @@
-# 👨‍💼 Sistema de Empleados - API REST
+# Sistema de Empleados
 
-## 📌 Descripción
+Aplicacion web para gestionar empleados con operaciones CRUD y busqueda por nombre o departamento.
 
-**Sistema de Empleados** es una aplicación backend desarrollada con Spring Boot que permite la gestión de empleados dentro de una organización.
+## Descripcion
 
-El sistema implementa una API REST para realizar operaciones CRUD sobre los empleados, facilitando el control de información como datos personales, departamento y salario.
+Este proyecto esta desarrollado con Spring Boot siguiendo una arquitectura en capas (controlador, servicio y repositorio), usando JSP para las vistas y MySQL para persistencia.
 
----
+No es una API REST pura; es una aplicacion web MVC renderizada en servidor.
 
-## 🧠 Objetivo del proyecto
+## Funcionalidades
 
-Este proyecto tiene como objetivo aplicar conceptos fundamentales de desarrollo backend, tales como:
+- Listado de empleados
+- Agregar empleado
+- Editar empleado
+- Eliminar empleado
+- Buscar empleado por nombre o departamento
+- Interfaz grafica modernizada y responsive
 
-- Arquitectura en capas
-- Persistencia con JPA / Hibernate
-- Creación de servicios REST
-- Manejo de datos en base de datos
+## Tecnologias
 
----
-
-## 🏗️ Arquitectura del sistema
-
-El sistema sigue una arquitectura en capas que separa responsabilidades:
-
-### 🌐 Controller
-
-- Expone los endpoints REST
-- Maneja las solicitudes HTTP (GET, POST, PUT, DELETE)
-
-### ⚙️ Service
-
-- Contiene la lógica de negocio
-- Valida y procesa la información
-
-### 📂 Repository
-
-- Interactúa con la base de datos
-- Usa Spring Data JPA para operaciones CRUD
-
-### 🧩 Model (Entity)
-
-- Representa la entidad **Empleado**
-- Mapea la tabla en la base de datos
-
----
-
-## 📦 Entidad principal
-
-### 👨‍💼 Empleado
-
-Representa a un trabajador dentro del sistema.
-
-**Atributos comunes:**
-
-- ID del empleado
-- Nombre
-- Departamento
-- Salario
-
----
-
-## 📦 Funcionalidades
-
-El sistema permite:
-
-- ✅ Registrar empleados
-- 📄 Listar todos los empleados
-- 🔍 Buscar empleado por Nombre o Departamento
-- ✏️ Actualizar datos del empleado
-- ❌ Eliminar empleados
-
----
-
-## 🔄 Flujo de funcionamiento
-
-1. El cliente (Postman o frontend) realiza una petición HTTP
-2. El Controller recibe la solicitud
-3. El Service aplica la lógica de negocio
-4. El Repository consulta o guarda en la base de datos
-5. Se devuelve la respuesta al cliente
-
----
-
-## 🛠️ Tecnologías utilizadas
-
-- Java
-- Spring Boot
-- Spring Data JPA
-- Hibernate
+- Java 25
+- Spring Boot 4
+- Spring MVC
+- Spring Data JPA / Hibernate
+- JSP + JSTL
 - MySQL
-- Maven
+- Maven Wrapper
+- Bootstrap 5
 
----
+## Estructura principal
 
-## 📊 Estructura del proyecto
+```text
+src/main/java/gm/empleados/
+	controlador/
+	servicio/
+	repositorio/
+	modelo/
 
-```bash
-src/
- ├── main/
- │   ├── java/
- │   │   ├── controller/
- │   │   ├── service/
- │   │   ├── repository/
- │   │   └── model/
- │   └── resources/
- │       └── application.properties
+src/main/resources/
+	application.properties
+
+src/main/webapp/WEB-INF/jsp/
+	index.jsp
+	agregar.jsp
+	editar.jsp
+	comunes/
 ```
 
----
+## Requisitos
 
-## 🚀 Ejecución del proyecto
+- JDK 25
+- Maven (opcional, puedes usar el wrapper)
+- MySQL en ejecucion
 
-1. Clonar el repositorio:
+## Configuracion
 
-```bash
-git clone https://github.com/ASVWilfredo/SistemaDeEmpleados.git
+Edita los datos de conexion en src/main/resources/application.properties:
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/empleados_db?createDatabaseIfNotExist=true
+spring.datasource.username=root
+spring.datasource.password=1234
+spring.jpa.hibernate.ddl-auto=update
+
+server.servlet.context-path=/empleados
 ```
 
-2. Configurar la base de datos en `application.properties`
+## Ejecucion
 
-3. Ejecutar el proyecto:
+### Windows (PowerShell)
 
-```bash
-mvn spring-boot:run
+```powershell
+./mvnw.cmd spring-boot:run
 ```
 
-4. Probar los endpoints con Postman o navegador
+### Linux / macOS
 
----
+```bash
+./mvnw spring-boot:run
+```
 
-## 💡 Endpoints principales
+La aplicacion queda disponible en:
 
-- `GET /empleados` → Obtener todos los empleados
-- `GET /empleados/{id}` → Obtener empleado por ID
-- `POST /empleados` → Crear empleado
-- `PUT /empleados/{id}` → Actualizar empleado
-- `DELETE /empleados/{id}` → Eliminar empleado
+http://localhost:8080/empleados
 
----
+## Rutas web principales
 
-## 🎯 Conclusión
+- GET /empleados/
+- GET /empleados/agregar
+- POST /empleados/agregar
+- GET /empleados/editar?idEmpleado={id}
+- POST /empleados/editar
+- GET /empleados/eliminar?idEmpleado={id}
+- GET /empleados/?busqueda={texto}
 
-Este proyecto implementa una API REST para la gestión de empleados, aplicando buenas prácticas de desarrollo backend como la separación en capas, uso de JPA para persistencia y diseño orientado a servicios, lo que lo hace escalable y fácil de mantener.
+## Pruebas y compilacion
 
----
+Compilar sin tests:
+
+```powershell
+./mvnw.cmd -DskipTests compile
+```
+
+Ejecutar tests:
+
+```powershell
+./mvnw.cmd test
+```
+
+## Repositorio
+
+https://github.com/WilyPardo3000/CRUD-EMPLEADOS
